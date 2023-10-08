@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->longText('meta_keywords')->nullable();
             $table->boolean('status')->default(true);
+            $table->bigInteger('sort')->default(100);
             $table->timestamps();
         });
     }

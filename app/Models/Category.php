@@ -16,4 +16,13 @@ class Category extends Model
     {
         return $this->belongsToMany(Post::class, 'post_categories', 'category_id', 'post_id');
     }
+
+    public static function lastSortNumber():int{
+
+        if(!empty($category=self::latest()->first())){
+            return $category->sort+100;
+        }
+
+        return 100;
+    }
 }

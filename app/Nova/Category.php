@@ -2,11 +2,13 @@
 
 namespace App\Nova;
 
+use App\Models\Category as ModelsCategory;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
@@ -51,6 +53,9 @@ class Category extends Resource
             ID::make()->sortable(),
             Text::make('Title')->sortable()->filterable(),
             Slug::make('Slug')->showOnIndex(false)->from("Title"),
+            Number::make("Sort")->sortable()->filterable()->default(function($d){
+                return ModelsCategory::lastSortNumber();
+            }),
             Image::make('Image'),
             Textarea::make('Meta Keywords','meta_keywords'),
             Boolean::make('Status')->default(true),
