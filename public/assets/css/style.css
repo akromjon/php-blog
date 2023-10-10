@@ -7914,7 +7914,7 @@ ul.forum-titles .forum-freshness .freshness-box .freshness-btm .bbp-author-avata
   top: 0;
   right: 0;
   width: 100%;
-  background: url("../img/blog-grid/top_post.jpg");
+  /* background: url("../img/blog-grid/top_post.jpg"); */
   background-size: cover;
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
@@ -9552,9 +9552,17 @@ blockquote .author {
   right: 8px;
   padding: 7px 22px;
 }
-
+.pagination .page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color:#11b3d6!important;
+    border-color:#11b3d6!important;
+}
+.page-link {
+    color:#11b3d6;
+}
 .f_social_icon {
-  padding-top: 40px;
+  padding-top: 20px;
 }
 .f_social_icon li {
   display: inline-block;

@@ -21,11 +21,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav menu ml-auto">
                 <li class="nav-item dropdown submenu active">
-                    <a href="blog-grid.html#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
+                    <a href="{{route('home')}}" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
                 </li>
                 @foreach($categories as $key => $cat)
                     <li class="nav-item dropdown submenu mega_menu tab-demo">
-                        <a href="blog-grid.html#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$cat->title}}</a>
+                        <a href="{{route('category.show',$cat->slug)}}" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$cat->title}}</a>
                     </li>
                 @endforeach
             </ul>

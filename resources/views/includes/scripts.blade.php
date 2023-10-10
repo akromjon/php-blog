@@ -7,3 +7,4 @@
 <script src="{{asset('assets/js/jquery.wavify.js')}}"></script>
 <script src="{{asset('assets/wow/wow.min.js')}}"></script>
 <script src="{{asset('assets/js/main.js')}}"></script>
+@livewireScripts

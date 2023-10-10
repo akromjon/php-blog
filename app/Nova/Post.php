@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use DmitryBubyakin\NovaMedialibraryField\Fields\Medialibrary;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
@@ -54,7 +55,7 @@ class Post extends Resource
             ID::make()->sortable(),
             Text::make("Title")->sortable()->filterable(),
             Slug::make("Slug")->from("Title")->showOnIndex(false),
-            Image::make("Image"),
+            Medialibrary::make("Image",'featured')->attachExisting()->single()->mediaOnIndex(1),
             Trix::make("Content")->stacked()->fullWidth()->withFiles('posts'),
             Tag::make("Tags",'tags')->withPreview()->showCreateRelationButton(),
             Textarea::make('Meta keywords', 'meta_keywords'),

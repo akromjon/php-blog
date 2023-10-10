@@ -1,4 +1,4 @@
-<div id="preloader">
+{{-- <div id="preloader">
     <div id="ctn-preloader" class="ctn-preloader">
         <div class="round_spinner">
             <div class="spinner"></div>
@@ -10,4 +10,4 @@
         <h2 class="head">Did You Know?</h2>
         <p></p>
     </div>
-</div>
+</div> --}}
