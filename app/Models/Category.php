@@ -15,7 +15,7 @@ class Category extends Model
 
     public function posts(): BelongsToMany
     {
-        return $this->belongsToMany(Post::class, 'post_categories', 'category_id', 'post_id');
+        return $this->belongsToMany(Post::class, 'post_categories', 'category_id', 'post_id')->where('status',true)->with('media');
     }
 
     public function scopeActive(Builder $query): void

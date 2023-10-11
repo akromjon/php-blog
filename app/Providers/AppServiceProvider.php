@@ -59,16 +59,16 @@ class AppServiceProvider extends ServiceProvider
     private function registerViews(): void {
 
 
-        view()->composer(['includes.nav','includes.footer-categories'], function ($view) {
-            $view->with('categories',CategoryService::get());
+        view()->composer(['includes.nav','includes.footer-categories','includes.sidebar-category'], function ($view) {
+            $view->with('globalCategories',CategoryService::get());
         });
 
-        view()->composer(['includes.latest-post','includes.footer-posts'], function ($view) {
-            $view->with('posts',PostService::get());
+        view()->composer(['includes.latest-post','includes.footer-posts','includes.sidebar-post'], function ($view) {
+            $view->with('globalPosts',PostService::get());
         });
 
-        view()->composer('includes.tag-list-in-post', function ($view) {
-            $view->with('tags',TagService::get());
+        view()->composer(['includes.tag-list-in-post','includes.siderbar-tag'], function ($view) {
+            $view->with('globalTags',TagService::get());
         });
     }
 }

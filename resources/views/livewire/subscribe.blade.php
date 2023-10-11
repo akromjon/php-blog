@@ -1,7 +1,5 @@
 <div>
     <section class="doc_action_area_three">
-        <img class="p_absolute shadows" src="img/blog-grid/shadow_action.png" alt="">
-        <img class="p_absolute b_man" src="img/blog-grid/man.png" alt="">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5">

@@ -38,7 +38,7 @@ class Post extends Model implements HasMedia
 
     public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(Category::class, 'post_categories', 'post_id', 'category_id');
+        return $this->belongsToMany(Category::class, 'post_categories', 'post_id', 'category_id')->orderBy('sort','desc');
     }
 
     public function tags(): BelongsToMany

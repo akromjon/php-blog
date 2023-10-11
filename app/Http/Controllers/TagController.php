@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use Illuminate\Contracts\View\View;
-
-class CategoryController extends Controller
+use App\Models\Post;
+class TagController extends Controller
 {
     public function __construct(Post $post)
     {
         $this->model = $post;
     }
-
     public function show(string $slug): View
     {
         $posts = $this->model
-            ->whereHas('categories', function ($query) use ($slug) {
+            ->whereHas('tags', function ($query) use ($slug) {
                 $query->where('slug', $slug);
             })
             ->with('categories', 'media', 'user')
@@ -23,6 +21,6 @@ class CategoryController extends Controller
             ->active()
             ->get();
 
-        return view('pages.category.show', ['posts' => $posts]);
+        return view('pages.tag.show', ['posts' => $posts]);
     }
 }

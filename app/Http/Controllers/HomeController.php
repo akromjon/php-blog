@@ -11,4 +11,11 @@ class HomeController extends Controller
         return view('pages.home.index');
     }
 
+    public function privacy(): View{
+        return view('pages.home.privacy');
+    }
+
+    public function contact(): View{
+        return view("pages.about.index");
+    }
 }

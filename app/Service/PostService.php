@@ -5,9 +5,10 @@ class PostService extends BaseService
 {
     public function __construct()
     {
-        $this->model = Post::with('categories', 'user')
-            ->orderBy('id', 'desc')
+        $this->model =
+            Post::orderBy('id', 'desc')
             ->active()
+            ->with('media')
             ->take(5)
             ->get();
     }

@@ -26,7 +26,7 @@ class Subscribe extends Component
             'email'=>$this->email,
         ]);
 
-        $this->email="";
+        $this->reset();
 
         $agent=new Agent();
 

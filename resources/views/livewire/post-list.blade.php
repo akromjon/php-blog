@@ -1,5 +1,6 @@
 <div>
 
+
     <section class="doc_blog_grid_area">
         <div class="blog_grid_inner bg_color">
             <div class="container">
@@ -16,23 +17,26 @@
                                     src="{{ $post->getFirstMediaUrl('featured') }}"
                                     alt="post image: {{ $post->title }}">
                                 <div class="grid_post_content">
-                                    <a href="blog-grid.html#">
+                                    <a href="{{ route('post.show', $post->slug) }}">
                                         <h3 title="post title: {{ $post->title }}">{{ $post->title }}</h3>
                                     </a>
                                     <div class="post_category">
                                     @empty(!$post->user)
-                                        <a href="blog-grid.html#" title="Author: {{ $post->user->name }}">By
+                                        <a href="{{ route('post.show', $post->slug) }}"
+                                            title="Author: {{ $post->user->name }}">By
                                             {{ $post->user->name }}</a>
                                     @endempty
-                                    <a href="blog-grid.html#">{{ $post->fCreated }}</a>
-                                    <a href="blog-grid.html#">{{ $post->read_duration }} Min Read</a>
+                                    <a href="{{ route('post.show', $post->slug) }}">{{ $post->fCreated }}</a>
+                                    <a href="{{ route('post.show', $post->slug) }}">{{ $post->read_duration }} Min
+                                        Read</a>
                                     @foreach ($post->categories as $key => $cat)
-                                        <a class="c_blue" href="blog-grid.html#"
+                                        <a class="c_blue" href="{{ route('category.show', $cat->slug) }}"
                                             title="Category: {{ $cat->title }}">{{ $cat->title }}</a>
                                     @endforeach
                                 </div>
                                 <p>{!! $post->limitedContentForLower !!}</p>
-                                <a title="Continue Reading" href="blog-grid.html#" class="learn_btn">Continue
+                                <a title="Continue Reading" href="{{ route('post.show', $post->slug) }}"
+                                    class="learn_btn">Continue
                                     Reading<i class="arrow_right"></i></a>
 
                             </div>
@@ -47,5 +51,12 @@
 
 
 </section>
+@section('livewireCustomScripts')
+    <script>
+        Livewire.on('urlChanged', (param) => {
+            history.pushState(null, null, param)
+        });
+    </script>
+@endsection
 
 </div>

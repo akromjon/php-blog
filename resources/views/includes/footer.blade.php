@@ -18,9 +18,10 @@
                     <div class="f_widget link_widget wow fadeInUp" data-wow-delay="0.4s">
                         <h3 class="f_title">Pages</h3>
                         <ul class="list-unstyled link_list">
-                            <li><a href="index-cool.html">Home</a></li>
-                            <li><a href="blog-grid.html#">About & Contact me</a></li>
-                            <li><a href="blog-grid.html#">Privacy Policy</a></li>
+                            <li><a class="{{isActive('home')}}" href="{{route('home')}}">Home</a></li>
+                            <li><a class="{{isActive('contact')}}" href="{{route('contact')}}">Contact me</a></li>
+                            <li><a class="{{isActive('privacy')}}" href="{{route('privacy')}}">Privacy Policy</a></li>
+                            <li><a href="blog-grid.html#">Sitemap</a></li>
                         </ul>
                     </div>
                 </div>

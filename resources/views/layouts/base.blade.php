@@ -11,7 +11,9 @@
         @include('includes.nav')
         @include('includes.search')
         @yield('main')
-        @include('includes.subscribe')
+        @if (DoNotShow(['privacy','contact']))
+            @include('includes.subscribe')
+        @endif
         @include('includes.footer')
     </div>
     <a id="back-to-top" title="Back to Top"></a>

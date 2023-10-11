@@ -20,6 +20,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         Nova::resources([
             \DmitryBubyakin\NovaMedialibraryField\Resources\Media::class,
         ]);
+
+        Nova::style('admin', public_path('assets/custom-trix.css'));
     }
 
     /**
