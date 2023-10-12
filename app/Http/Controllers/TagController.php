@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use App\Models\Post;
+use App\Models\Tag;
+
 class TagController extends Controller
 {
     public function __construct(Post $post)
@@ -12,6 +14,7 @@ class TagController extends Controller
     }
     public function show(string $slug): View
     {
+        $tag=Tag::where('slug',$slug)->firstOrFail();
         $posts = $this->model
             ->whereHas('tags', function ($query) use ($slug) {
                 $query->where('slug', $slug);
@@ -21,6 +24,6 @@ class TagController extends Controller
             ->active()
             ->get();
 
-        return view('pages.tag.show', ['posts' => $posts]);
+        return view('pages.tag.show', ['posts' => $posts,'tag'=>$tag]);
     }
 }

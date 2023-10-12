@@ -14,7 +14,7 @@ class GlobalSearch extends Component
     #[Url]
     public $search = '';
 
-    public $per_page = 5;
+    public $per_page = 10;
 
     protected $queryString = ['search' => ['except' => '']];
     public function render()

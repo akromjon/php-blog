@@ -1,6 +1,6 @@
 <div>
-    <form action="blog-grid.html#" class="banner_search_form">
-        <input wire:model.live="search" type="search" class="form-control" placeholder='Search: categories, posts, tags'>
+    <div  class="banner_search_form">
+        <input wire:model.live="search" type="search" class="form-control" placeholder='Live Search: categories, posts, tags'>
         <button type="submit"><i class="icon_search"></i></button>
         <div class="instant-results">
             @if (count($results))
@@ -67,5 +67,5 @@
                 </ul>
             @endif
         </div>
-    </form>
+    </div>
 </div>

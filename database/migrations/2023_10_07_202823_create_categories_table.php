@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('image')->nullable();
             $table->string('slug')->unique();
-            $table->longText('meta_keywords')->nullable();
+            $table->text('meta_keywords')->nullable();
+            $table->text('description')->nullable();
             $table->boolean('status')->default(true);
             $table->bigInteger('sort')->default(100);
             $table->timestamps();

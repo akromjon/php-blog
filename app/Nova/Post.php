@@ -56,6 +56,7 @@ class Post extends Resource
             Text::make("Title")->sortable()->filterable(),
             Slug::make("Slug")->from("Title")->showOnIndex(false),
             Medialibrary::make("Image",'featured')->attachExisting()->single()->mediaOnIndex(1),
+            Textarea::make('Description'),
             Trix::make("Content")->stacked()->fullWidth()->withFiles('posts'),
             Tag::make("Tags",'tags')->withPreview()->showCreateRelationButton(),
             Textarea::make('Meta keywords', 'meta_keywords'),

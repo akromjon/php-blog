@@ -3,6 +3,8 @@
 
 <head>
     @include('includes.head')
+    @yield('meta')
+
 </head>
 
 <body data-scroll-animation="true">

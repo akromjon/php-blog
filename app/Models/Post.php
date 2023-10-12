@@ -11,15 +11,32 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use RalphJSmit\Laravel\SEO\Support\HasSEO;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
 class Post extends Model implements HasMedia
 {
     use HasFactory;
 
     use InteractsWithMedia;
 
+    use HasSEO;
+
     protected $casts = [
         'publish_date' => 'datetime',
     ];
+
+    public function getDynamicSEOData(): SEOData
+    {
+        return new SEOData(
+            title: $this->title." - ".config('app.name'),
+            description: $this->description,
+            image: $this->getFirstMediaUrl('featured'),
+            site_name: config('app.name'),
+            locale: "en_US",
+            url: route("post.show",$this->slug),
+            type:'article',
+        );
+    }
 
     public function registerMediaCollections(): void
     {
@@ -48,7 +65,7 @@ class Post extends Model implements HasMedia
 
     public function getLimitedContentAttribute(): string
     {
-        return Str::limit(strip_tags(str_replace('<', ' <', $this->attributes['content'])), 250, $end = '...');
+        return Str::words(strip_tags(str_replace('<', ' <', $this->attributes['content'])), 100, $end = '...');
     }
 
     public function getLimitedContentForLowerAttribute(): string
@@ -61,12 +78,5 @@ class Post extends Model implements HasMedia
         return Carbon::parse($this->attributes['created_at'])->toFormattedDateString();
     }
 
-    public function getImageWithStorageAttribute(): string
-    {
-        if (filter_var($this->attributes['image'], FILTER_VALIDATE_URL) !== false) {
-            return $this->attributes['image'];
-        }
 
-        return '/storage/' . $this->attributes['image'];
-    }
 }

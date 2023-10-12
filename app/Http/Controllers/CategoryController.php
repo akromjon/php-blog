@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
 
@@ -14,6 +15,8 @@ class CategoryController extends Controller
 
     public function show(string $slug): View
     {
+        $category = Category::where('slug', $slug)->firstOrFail();
+
         $posts = $this->model
             ->whereHas('categories', function ($query) use ($slug) {
                 $query->where('slug', $slug);
@@ -23,6 +26,6 @@ class CategoryController extends Controller
             ->active()
             ->get();
 
-        return view('pages.category.show', ['posts' => $posts]);
+        return view('pages.category.show', ['posts' => $posts, 'category' => $category]);
     }
 }

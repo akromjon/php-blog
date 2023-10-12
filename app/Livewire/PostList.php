@@ -15,15 +15,20 @@ class PostList extends Component
     {
         $this->searchTag = $this->searchTag ? $this->searchTag : request()->query('tag');
 
-        $posts = Post::whereHas('tags', function ($query) {
-            if ($this->searchTag && $this->searchTag != 'all-tags') {
+        $posts = Post::with(['categories', 'user', 'media']);
+
+        if ($this->searchTag && $this->searchTag != 'all-tags') {
+            $posts->whereHas('tags', function ($query) {
                 $query->where('slug', $this->searchTag);
-            }
-        })
-            ->with(['categories', 'user', 'media'])
+            });
+        }
+
+        $posts=$posts
             ->active()
             ->orderBy('id', 'desc')
             ->paginate(10);
+
+
 
         return view('livewire.post-list', [
             'posts' => $posts,

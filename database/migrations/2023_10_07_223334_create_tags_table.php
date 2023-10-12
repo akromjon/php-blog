@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('image')->nullable();
             $table->string('meta_keywords')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

@@ -1,4 +1,7 @@
 @extends('layouts.base')
+@section('meta')
+    {!! seo($seoData) !!}
+@endsection
 @section('main')
     <section class="blog_area">
         <div class="container">

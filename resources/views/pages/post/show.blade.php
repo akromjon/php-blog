@@ -1,4 +1,7 @@
 @extends('layouts.base')
+@section('meta')
+{!! seo()->for($post) !!}
+@endsection
 @section('main')
     <section class="breadcrumb_area_two">
         <div class="container">
