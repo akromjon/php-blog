@@ -57,6 +57,7 @@ class Category extends Resource
                 return ModelsCategory::lastSortNumber();
             }),
             Image::make('Image'),
+            Textarea::make('Description'),
             Textarea::make('Meta Keywords','meta_keywords'),
             Boolean::make('Status')->default(true),
             BelongsToMany::make('Posts','posts')->sortable()->filterable()

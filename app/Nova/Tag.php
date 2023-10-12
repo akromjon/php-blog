@@ -50,6 +50,7 @@ class Tag extends Resource
             Slug::make("Slug")->from("Title"),
             Image::make("Image"),
             Textarea::make("Meta Keywords",'meta_keywords'),
+            Textarea::make('Description'),
             BelongsToMany::make("Posts","posts"),
         ];
     }
