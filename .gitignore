@@ -17,3 +17,7 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+/public/sitemaps/category/*.xml
+/public/sitemaps/post/*.xml
+/public/sitemaps/tag/*.xml
+/public/sitemap.xml

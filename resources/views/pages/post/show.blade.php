@@ -34,7 +34,7 @@
                                     alt=""></a>
 
 
-                            {!! $post->content !!}
+                            {!! $post->contentWithCode !!}
 
 
                         </div>

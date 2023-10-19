@@ -14,12 +14,21 @@ class GlobalSearch extends Component
     #[Url]
     public $search = '';
 
+    public string $oldSearch = '';
+
     public $per_page = 10;
 
-    protected $queryString = ['search' => ['except' => '']];
     public function render()
     {
         $results = [];
+
+        if ($this->search != $this->oldSearch) {
+            $this->per_page = 10;
+        }
+
+        if ($this->search) {
+            $this->oldSearch = $this->search;
+        }
 
         if ($this->search) {
             $results = Search::add(
@@ -41,6 +50,6 @@ class GlobalSearch extends Component
 
     public function loadMore($per_page)
     {
-        $this->per_page =+(int) $per_page;
+        $this->per_page = +(int) $per_page;
     }
 }

@@ -2,9 +2,16 @@
 
 namespace App\Providers;
 
+use App\Nova\Dashboards\PostDashboard;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Gate;
+use Laravel\Nova\Fields\File;
+use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
+use Laravel\Nova\Panel;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -16,6 +23,22 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot()
     {
         parent::boot();
+
+        Nova::footer(function ($request) {
+
+        });
+
+        \Outl1ne\NovaSettings\NovaSettings::addSettingsFields([
+            Panel::make('Site', [
+              Text::make('Name'),
+              File::make('Favicon'),
+              Image::make('Logo'),
+              Textarea::make('Google Analytics','google_analytics')->help('Google Analytics Script'),
+              Text::make('Telegram'),
+              Text::make('Instagram'),
+              Text::make('LinkedIn'),
+            ]),
+        ]);
 
         Nova::resources([
             \DmitryBubyakin\NovaMedialibraryField\Resources\Media::class,
@@ -48,7 +71,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         Gate::define('viewNova', function ($user) {
             return in_array($user->email, [
-                //
+                'akyprog@gmail.com'
             ]);
         });
     }
@@ -62,6 +85,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             new \App\Nova\Dashboards\Main,
+
         ];
     }
 
@@ -72,7 +96,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function tools()
     {
-        return [];
+        return [
+            new \Outl1ne\NovaSettings\NovaSettings
+        ];
     }
 
     /**

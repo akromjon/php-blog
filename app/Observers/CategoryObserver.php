@@ -10,11 +10,9 @@ class CategoryObserver
 {
     public function creating(Category $category): void
     {
-        $this->convertToUpper($category);
     }
     public function updating(Category $category): void
     {
-        $this->convertToUpper($category);
     }
 
     private function convertToUpper(Category $category){

@@ -21,7 +21,7 @@
                             <li><a class="{{isActive('home')}}" href="{{route('home')}}">Home</a></li>
                             <li><a class="{{isActive('contact')}}" href="{{route('contact')}}">Contact me</a></li>
                             <li><a class="{{isActive('privacy')}}" href="{{route('privacy')}}">Privacy Policy</a></li>
-                            <li><a href="blog-grid.html#">Sitemap</a></li>
+                            <li><a  href="{{asset('sitemap.xml')}}">Sitemap</a></li>
                         </ul>
                     </div>
                 </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
 {
@@ -13,10 +14,13 @@ class PostController extends Controller
     }
     public function show(string $slug): View
     {
-        $post = $this->model
-            ->where('slug', $slug)
-            ->with('categories', 'media')
-            ->firstOrFail();
+
+        $post = Cache::rememberForever('post.show.' . $slug, function () use ($slug) {
+            return $this->model
+                ->where('slug', $slug)
+                ->with('categories', 'media','user')
+                ->firstOrFail();
+        });
 
         return view('pages.post.show', ['post' => $post]);
     }

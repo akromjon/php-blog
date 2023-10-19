@@ -1,6 +1,6 @@
 @extends('layouts.base')
 @section('meta')
-{!! seo()->for($category) !!}
+{!! seo($category) !!}
 @endsection
 @section('main')
     <section class="doc_blog_classic_area sec_pad">

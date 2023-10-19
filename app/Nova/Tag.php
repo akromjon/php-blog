@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use DmitryBubyakin\NovaMedialibraryField\Fields\Medialibrary;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
@@ -48,7 +49,7 @@ class Tag extends Resource
             ID::make()->sortable(),
             Text::make('Title')->sortable()->filterable(),
             Slug::make("Slug")->from("Title"),
-            Image::make("Image"),
+            Medialibrary::make("Image",'featured')->attachExisting()->single()->mediaOnIndex(1),
             Textarea::make("Meta Keywords",'meta_keywords'),
             Textarea::make('Description'),
             BelongsToMany::make("Posts","posts"),

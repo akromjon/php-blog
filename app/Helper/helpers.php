@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Cache;
+
 if (!function_exists('isActive')) {
     function isActive(string $routeName, string $slug = ''): string
     {
@@ -36,5 +38,14 @@ if (!function_exists('IsActiveByParam')) {
             return 'active';
         }
         return '';
+    }
+}
+
+if (!function_exists('getCache')) {
+    function getCache(string $cacheName, $value)
+    {
+        return Cache::rememberForever($cacheName, function () use ($value) {
+            return $value;
+        });
     }
 }

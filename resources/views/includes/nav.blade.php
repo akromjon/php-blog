@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg menu_one" id="sticky">
     <div class="container">
-        <a class="navbar-brand sticky_logo" href="index.html">
+        <a class="navbar-brand sticky_logo" href="{{route('home')}}">
             <img width="80px" src="{{asset('assets/img/logo-white.png')}}" srcset="{{asset('assets/img/logo-white.png')}}" alt="logo">
             <img width="80px" src="{{asset('assets/img/logo-yellow.png')}}" srcset="{{asset('assets/img/logo-yellow.png')}}" alt="logo">
         </a>

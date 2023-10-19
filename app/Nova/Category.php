@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Models\Category as ModelsCategory;
+use DmitryBubyakin\NovaMedialibraryField\Fields\Medialibrary;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
@@ -37,9 +38,20 @@ class Category extends Resource
      *
      * @var array
      */
-    public static $search = [
-        'id','title','meta_keywords'
+
+    public static $indexDefaultOrder = [
+        'sort' => 'desc',
     ];
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        if (empty($request->get('orderBy'))) {
+            $query->getQuery()->orders = [];
+            return $query->orderBy(key(static::$indexDefaultOrder), reset(static::$indexDefaultOrder));
+        }
+        return $query;
+    }
+    public static $search = ['id', 'title', 'meta_keywords'];
 
     /**
      * Get the fields displayed by the resource.
@@ -51,16 +63,28 @@ class Category extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Title')->sortable()->filterable(),
-            Slug::make('Slug')->showOnIndex(false)->from("Title"),
-            Number::make("Sort")->sortable()->filterable()->default(function($d){
-                return ModelsCategory::lastSortNumber();
-            }),
-            Image::make('Image'),
+            Text::make('Title')
+                ->sortable()
+                ->filterable(),
+            Slug::make('Slug')
+                ->showOnIndex(false)
+                ->from('Title'),
+            Medialibrary::make('Image', 'featured')
+                ->attachExisting()
+                ->single()
+                ->mediaOnIndex(1),
+            Number::make('Sort')
+                ->sortable()
+                ->filterable()
+                ->default(function ($d) {
+                    return ModelsCategory::lastSortNumber();
+                }),
             Textarea::make('Description'),
-            Textarea::make('Meta Keywords','meta_keywords'),
+            Textarea::make('Meta Keywords', 'meta_keywords'),
             Boolean::make('Status')->default(true),
-            BelongsToMany::make('Posts','posts')->sortable()->filterable()
+            BelongsToMany::make('Posts', 'posts')
+                ->sortable()
+                ->filterable(),
         ];
     }
 

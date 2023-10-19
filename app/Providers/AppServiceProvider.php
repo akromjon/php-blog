@@ -12,7 +12,6 @@ use App\Service\PostService;
 use App\Service\TagService;
 use Illuminate\Support\Facades\Cache;
 
-
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -32,43 +31,54 @@ class AppServiceProvider extends ServiceProvider
         $this->registerViews();
     }
 
-    private function registerStr(): void {
-
-        Str::macro('readDuration', function(...$text) {
-            return (int)max(1, round(str_word_count(implode(" ", $text)) / 200));
+    private function registerStr(): void
+    {
+        Str::macro('readDuration', function (...$text) {
+            return (int) max(1, round(str_word_count(implode(' ', $text)) / 200));
         });
-
-
     }
 
-    private function registerSingletons(): void{
-
-        $this->app->singleton(CategoryService::class,function($app){
+    private function registerSingletons(): void
+    {
+        $this->app->singleton(CategoryService::class, function ($app) {
             return new CategoryService();
         });
-        $this->app->singleton(PostService::class,function($app){
+        $this->app->singleton(PostService::class, function ($app) {
             return new PostService();
         });
 
-        $this->app->singleton(TagService::class,function($app){
+        $this->app->singleton(TagService::class, function ($app) {
             return new TagService();
         });
-
     }
 
-    private function registerViews(): void {
-
-
-        view()->composer(['includes.nav','includes.footer-categories','includes.sidebar-category'], function ($view) {
-            $view->with('globalCategories',CategoryService::get());
+    private function registerViews(): void
+    {
+        view()->composer(['includes.nav', 'includes.footer-categories', 'includes.sidebar-category'], function ($view) {
+            $view->with(
+                'globalCategories',
+                Cache::rememberForever('category_service_list', function () {
+                    return CategoryService::get();
+                }),
+            );
         });
 
-        view()->composer(['includes.latest-post','includes.footer-posts','includes.sidebar-post'], function ($view) {
-            $view->with('globalPosts',PostService::get());
+        view()->composer(['includes.latest-post', 'includes.footer-posts', 'includes.sidebar-post'], function ($view) {
+            $view->with(
+                'globalPosts',
+                Cache::rememberForever('post_service_list', function () {
+                    return PostService::get();
+                }),
+            );
         });
 
-        view()->composer(['includes.tag-list-in-post','includes.siderbar-tag'], function ($view) {
-            $view->with('globalTags',TagService::get());
+        view()->composer(['includes.tag-list-in-post', 'includes.siderbar-tag'], function ($view) {
+            $view->with(
+                'globalTags',
+                Cache::rememberForever('tag_service_list', function () {
+                    return TagService::get();
+                }),
+            );
         });
     }
 }

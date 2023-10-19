@@ -1,5 +1,5 @@
 
-@empty(!$post=isset($globalPosts[0]) ? $globalPosts[0] : $globalPosts)
+@empty(!$post=isset($globalPosts[0]) ? $globalPosts[0] : "")
 <section class="blog_top_post_area sec_pad bg_color">
     <div class="container">
         <div class="row blog_top_post flex-row-reverse">
