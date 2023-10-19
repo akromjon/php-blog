@@ -32,13 +32,12 @@ class GlobalSearch extends Component
 
         if ($this->search) {
             $results = Search::add(
-                Post::where('slug', 'like', "%{$this->search}%")
-                    ->orWhere('content', 'like', "%{$this->search}%")
+                Post::active()->where('content', 'like', "%{$this->search}%")
                     ->orWhere('slug', 'like', "%{$this->search}%")
                     ->with('media'),
-                ['title', 'content', 'slug'],
+                ['title', 'content', 'slug','status'],
             )
-                ->add(Category::where('title', 'like', "%$this->search%"), ['title', 'slug'])
+                ->add(Category::active()->where('title', 'like', "%$this->search%"), ['title','status', 'slug'])
                 ->add(Tag::where('title', 'like', "%$this->search%"), ['title', 'slug'])
                 ->orderByModel([Post::class, Category::class, Tag::class])
                 ->paginate($perPage = $this->per_page)

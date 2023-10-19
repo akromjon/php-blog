@@ -6,7 +6,7 @@
     <section class="breadcrumb_area_two">
         <div class="container">
             <div class="breadcrumb_content">
-                <h2>{{ $post->title }}</h2>
+                <h1 title="Post Heading: {{$post->title}}">{{ $post->title }}</h1>
                 <div class="post_category">
                     @empty(!$post->user)
                         <a href="{{ route('post.show', $post->slug) }}" title="Author: {{ $post->user->name }}">By
@@ -33,7 +33,7 @@
                                 <img width="100%" height="450px" src="{{ $post->getFirstMediaUrl('featured') }}"
                                     alt=""></a>
 
-
+                            <p>{!!$post->description!!}</p>
                             {!! $post->contentWithCode !!}
 
 

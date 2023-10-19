@@ -21,7 +21,7 @@
                             <a class="c_blue" href="{{route('post.show',$post->slug)}}" title="Category: {{$cat->title}}">{{$cat->title}}</a>
                         @endforeach
                     </div>
-                    <p>{!!$post->limitedContent!!}</p>
+                    <p>{!!$post->description!!}</p>
                     <a title="Continue Reading" href="{{route('post.show',$post->slug)}}" class="learn_btn">Continue Reading<i class="arrow_right"></i></a>
                 </div>
             </div>

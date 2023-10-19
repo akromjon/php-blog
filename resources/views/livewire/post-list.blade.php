@@ -34,7 +34,7 @@
                                             title="Category: {{ $cat->title }}">{{ $cat->title }}</a>
                                     @endforeach
                                 </div>
-                                <p>{!! $post->limitedContentForLower !!}</p>
+                                <p>{!! $post->description !!}</p>
                                 <a title="Continue Reading" href="{{ route('post.show', $post->slug) }}"
                                     class="learn_btn">Continue
                                     Reading<i class="arrow_right"></i></a>

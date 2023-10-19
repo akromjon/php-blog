@@ -29,7 +29,7 @@
                     </li>
                 @endforeach
             </ul>
-            {{-- <a class="nav_btn" href="blog-grid.html#">About Me</a> --}}
+
         </div>
     </div>
 </nav>

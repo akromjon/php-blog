@@ -28,7 +28,7 @@
                                 <a href="{{ route('post.show', $post->slug) }}">
                                     <h3>{{ $post->title }}</h3>
                                 </a>
-                                <p>{!! $post->limitedContent !!}</p>
+                                <p>{!! $post->description !!}</p>
                                 <div class="d-flex justify-content-between p_bottom">
                                     <a href="{{ route('post.show', $post->slug) }}" class="learn_btn">Continue Reading<i
                                             class="arrow_right"></i></a>
