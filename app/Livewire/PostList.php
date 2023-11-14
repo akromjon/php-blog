@@ -26,7 +26,7 @@ class PostList extends Component
         $posts=$posts
             ->active()
             ->orderBy('id', 'desc')
-            ->paginate(10);
+            ->paginate(20);
 
 
 

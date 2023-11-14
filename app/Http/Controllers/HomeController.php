@@ -39,9 +39,10 @@ class HomeController extends Controller
     }
 
     public function contact(): View{
+
         $seoData=new SEOData(
             title: "Contact"." - ".config('app.name'),
-            description: "Contact me - we do appreciate you",
+            description: "Contact me - we do appreciate your time",
             image: "websitelogo",
             site_name: config('app.name'),
             locale: "en_US",

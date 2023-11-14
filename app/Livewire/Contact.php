@@ -33,4 +33,8 @@ class Contact extends Component
 
         session()->flash('message', 'Your Have Submitted Successfully!');
     }
+
+
+
+
 }

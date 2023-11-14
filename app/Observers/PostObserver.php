@@ -30,7 +30,7 @@ class PostObserver
     {
         $content = strip_tags(str_replace('<', ' <', $post->content));
 
-        $post->word_count = Str::wordCount($content);
+        $post->word_count = Str::wordCount($post->description." ".$content);
 
         $post->read_duration = Str::readDuration($content);
     }

@@ -14,7 +14,7 @@ class GlobalSearch extends Component
     #[Url]
     public $search = '';
 
-    public string $oldSearch = '';
+    public $oldSearch = '';
 
     public $per_page = 10;
 
@@ -32,15 +32,23 @@ class GlobalSearch extends Component
 
         if ($this->search) {
             $results = Search::add(
-                Post::active()->where('content', 'like', "%{$this->search}%")
-                    ->orWhere('slug', 'like', "%{$this->search}%")
+                Post::active()
+                    ->where('slug', 'like', '%' . $this->search . '%')
+                    ->orWhere('content', 'like', '%' . $this->search . '%')
+                    ->orWhere('description', 'like', '%' . $this->search . '%')
                     ->with('media'),
-                ['title', 'content', 'slug','status'],
+                ['id', 'title', 'content', 'slug', 'status', 'description'],
+                'created_at',
             )
-                ->add(Category::active()->where('title', 'like', "%$this->search%"), ['title','status', 'slug'])
-                ->add(Tag::where('title', 'like', "%$this->search%"), ['title', 'slug'])
+                ->add(
+                    Category::active()
+                        ->where('title', 'like', '%' . $this->search . '%')
+                        ->orWhere('description', 'like', '%' . $this->search . '%'),
+                    ['title', 'status', 'slug'],
+                )
+                ->add(Tag::where('title', 'like', '%' . $this->search . '%'), ['title', 'slug'])
                 ->orderByModel([Post::class, Category::class, Tag::class])
-                ->paginate($perPage = $this->per_page)
+                ->paginate($this->per_page)
                 ->search($this->search);
         }
 
@@ -49,6 +57,6 @@ class GlobalSearch extends Component
 
     public function loadMore($per_page)
     {
-        $this->per_page = +(int) $per_page;
+        $this->per_page = $this->per_page+$per_page;
     }
 }

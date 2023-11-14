@@ -9,7 +9,7 @@
                 <div class="col-lg-8">
                     @foreach ($posts as $key => $post)
                         <div class="blog_top_post blog_classic_item">
-                            <img width="100%" height="320px" src="{{ $post->getFirstMediaUrl('featured') }}"
+                            <img width="100%" height="400px" src="{{ $post->getFirstMediaUrl('featured') }}"
                                 alt="Post Image: {{ $post->title }}">
                             <div class="b_top_post_content">
                                 <div class="post_category">

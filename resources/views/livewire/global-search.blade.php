@@ -6,7 +6,7 @@
             @if (count($results))
                 <ul class="list-unstyled result-bucket">
                     @foreach ($results as $key => $model)
-                        @if (class_basename($model) == 'Post')
+                        @if (class_basename($model) == 'Post' && $model->status)
                             <li class="result-entry">
                                 <a href="{{ route('post.show', $model->slug) }}" class="result-link">
                                     <div class="media">
@@ -57,7 +57,7 @@
                             </li>
                         @endif
                     @endforeach
-                    @if (!$results->onLastPage())
+                    @if (!$results->onLastPage() && $results->hasMorePages())
                         <li wire:click="loadMore(10)" class="load_more">
                             <a class="result-link">
                                 Load More...

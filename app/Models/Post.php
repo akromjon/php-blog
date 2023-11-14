@@ -18,9 +18,7 @@ use Spatie\Sitemap\Tags\Url;
 class Post extends Model implements HasMedia, Sitemapable
 {
     use HasFactory;
-
     use InteractsWithMedia;
-
     use Boot;
     use HasSEO;
 
@@ -45,9 +43,9 @@ class Post extends Model implements HasMedia, Sitemapable
         $this->addMediaCollection('featured')->singleFile();
     }
 
-    public function scopeActive(Builder $query): void
+    public function scopeActive(Builder $query): Builder
     {
-        $query->where('status', true);
+        return $query->where('status', true);
     }
 
     public function user(): BelongsTo
@@ -64,7 +62,6 @@ class Post extends Model implements HasMedia, Sitemapable
     {
         return $this->belongsToMany(Tag::class, 'post_tags', 'post_id', 'tag_id');
     }
-
     public function getContentWithCodeAttribute(): string
     {
         $openTag = Str::replace('<pre>', "<div class='highlight'><pre><code class='language-php' data-lang='php'>", $this->attributes['content']);

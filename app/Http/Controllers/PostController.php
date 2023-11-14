@@ -18,7 +18,7 @@ class PostController extends Controller
         $post = Cache::rememberForever('post.show.' . $slug, function () use ($slug) {
             return $this->model
                 ->where('slug', $slug)
-                ->with('categories', 'media','user')
+                ->with('categories', 'media','user',)
                 ->firstOrFail();
         });
 

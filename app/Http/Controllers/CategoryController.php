@@ -16,9 +16,7 @@ class CategoryController extends Controller
 
     public function show(string $slug): View
     {
-        // $category = Cache::rememberForever('category.show.' . $slug, function () use ($slug) {
-            $category = Category::where('slug', $slug)->firstOrFail();
-        // });
+        $category = Category::where('slug', $slug)->firstOrFail();
 
         $posts = Cache::rememberForever('category.show.withposts' . $slug, function () use ($slug) {
             return $this->model

@@ -37,6 +37,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
               Text::make('Telegram'),
               Text::make('Instagram'),
               Text::make('LinkedIn'),
+              
             ]),
         ]);
 
