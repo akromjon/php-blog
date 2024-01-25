@@ -20,6 +20,7 @@ class HomeController extends Controller
             type:'website',
         );
 
+
         return view('pages.home.index',['seoData'=>$seoData]);
     }
 
@@ -27,7 +28,7 @@ class HomeController extends Controller
 
         $seoData=new SEOData(
             title: "Privacy Policy"." - ".config('app.name'),
-            description: "Thank you for visiting phphint.com, an online blogging platform dedicated to PHP, Laravel, and programming. At http://phphint.com.test, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, and protect your data. By using our website, you consent to the practices described in this policy.",
+            description: "Thank you for visiting phptry.com, an online blogging platform dedicated to PHP, Laravel, and programming. At http://phphint.com.test, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, and protect your data. By using our website, you consent to the practices described in this policy.",
             image: "websitelogo",
             site_name: config('app.name'),
             locale: "en_US",

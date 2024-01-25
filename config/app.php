@@ -189,6 +189,6 @@ return [
     ])->toArray(),
 
 
-    'contact_email' => env('APP_CONTACT_EMAIL', 'info@phphint.com'),
+    'contact_email' => env('APP_CONTACT_EMAIL', 'info@phptry.com'),
 
 ];

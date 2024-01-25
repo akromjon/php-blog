@@ -6,4 +6,5 @@
 <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
 <link rel="stylesheet" href="{{asset('assets/prism/prism.css')}}">
+<link rel="shortcut icon" href="{{asset('assets/img/favicon.ico')}}" type="image/x-icon">
 @livewireStyles

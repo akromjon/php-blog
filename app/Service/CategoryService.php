@@ -8,6 +8,10 @@ class CategoryService extends BaseService
 {
     public function __construct()
     {
-        $this->model = Category::withCount('posts')->active()->orderBy('sort','desc')->get();
+        $this->model = Category::withCount('posts')
+            ->active()
+            ->orderBy('sort','desc')
+            ->limit(10)
+            ->get();
     }
 }

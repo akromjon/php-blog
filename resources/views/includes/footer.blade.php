@@ -6,10 +6,10 @@
                     <div class="f_widget link_widget wow fadeInUp" data-wow-delay="0.4s">
                         <h3 class="f_title">Follow Our Socials</h3>
                         <ul class="list-unstyled f_social_icon">
-                            <li><a href="blog-grid.html#"><i class="social_facebook"></i></a></li>
-                            <li><a href="blog-grid.html#"><i class="social_twitter"></i></a></li>
-                            <li><a href="blog-grid.html#"><i class="social_vimeo"></i></a></li>
-                            <li><a href="blog-grid.html#"><i class="social_linkedin"></i></a></li>
+                            <li><a href="#"><i class="social_facebook"></i></a></li>
+                            <li><a href="#"><i class="social_twitter"></i></a></li>
+                            <li><a href="#"><i class="social_vimeo"></i></a></li>
+                            <li><a href="#"><i class="social_linkedin"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
     </div>
     <div class="footer_bottom text-center">
         <div class="container">
-            <p>© {{now()->format("Y")}} | phphint.com | info@phphint.com</p>
+            <p>© {{now()->format("Y")}} | phptry.com | info@phptry.com</p>
         </div>
     </div>
 </footer>
